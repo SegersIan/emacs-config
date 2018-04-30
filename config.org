@@ -46,3 +46,47 @@
   ;; Configure start buffer
   (setq inhibit-startup-message t)
 #+END_SRC
+* IDO
+** enable ido mode
+This will give nicer features for switching buffers for example
+#+BEGIN_SRC emacs-lisp
+  (setq ido-enable-flex-matching nil)
+  (setq ido-create-new-bufer 'always)
+  (setq ido-everywhere t)
+  (ido-mode 1)
+#+END_SRC 
+** IDO-vertical
+#+BEGIN_SRC emacs-lisp
+  (use-package ido-vertical-mode
+    :ensure t
+    :init
+    (ido-vertical-mode 1))
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+END_SRC
+** Smex (IDO for M-x commands)
+This package wil give also a vertical suggest pop up for all M-x, just like IDO vertical
+#+BEGIN_SRC emacs-lisp
+  (use-package smex
+    :ensure t
+    :init (smex-initialize)
+    :bind
+    ("M-x" . smex))
+#+END_SRC
+** Switch buffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
+
+#+END_SRC
+* Buffers
+** Enable ibuffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x b") 'ibuffer)
+#+END_SRC
+* Avy
+Used by `M-s` , then type a character of where you want to navigate and behold
+#+BEGIN_SRC emacs-lisp
+  (use-package avy
+    :ensure t
+    :bind
+    ("M-s" . avy-goto-char))
+#+END_SRC
